@@ -20,147 +20,11 @@
   <!-- Console ceeeses -->
   <link rel="stylesheet" href="./others/assets/css/console.css" />
 
+  <!-- Homepage CSS -->
+  <link rel="stylesheet" href="./others/assets/scripts/homepage/css/homepage.css" />
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap" rel="stylesheet" />
-
-  <style>
-    /* Game Carousel Styles */
-    .games-carousel-section {
-      margin: 40px auto;
-      max-width: 1400px;
-      padding: 0 20px;
-    }
-
-    .carousel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .carousel-header h2 {
-      color: var(--accent-color);
-      font-size: 28px;
-      margin: 0;
-    }
-
-    .carousel-controls {
-      display: flex;
-      gap: 10px;
-    }
-
-    .carousel-btn {
-      background: var(--nav-color);
-      border: 2px solid var(--accent-color);
-      color: var(--text-color);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-    }
-
-    .carousel-btn:hover {
-      background: var(--accent-color);
-      transform: scale(1.1);
-    }
-
-    .games-carousel {
-      position: relative;
-      overflow: hidden;
-      padding: 20px 0;
-    }
-
-    .carousel-track {
-      display: flex;
-      gap: 20px;
-      transition: transform 0.5s ease;
-    }
-
-    .carousel-game-card {
-      min-width: 250px;
-      height: 250px;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
-      cursor: pointer;
-      background-color: #000;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .carousel-game-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 30px rgba(79, 144, 255, 0.5);
-    }
-
-    .carousel-game-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      pointer-events: none;
-    }
-
-    .carousel-game-card h3 {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      margin: 0;
-      padding: 15px;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
-      color: #fff;
-      font-size: 1em;
-      font-weight: 700;
-      text-align: center;
-    }
-
-    /* Featured Section */
-    .featured-section {
-      background: var(--nav-color);
-      border: 2px solid var(--accent-color);
-      border-radius: 15px;
-      padding: 30px;
-      margin: 30px auto;
-      max-width: 1200px;
-      text-align: center;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .featured-section h2 {
-      color: var(--accent-color);
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
-
-    .featured-section p {
-      color: var(--text-color);
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-
-    /* Auto-scroll animation */
-    @keyframes scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    .carousel-track.auto-scroll {
-      animation: scroll 30s linear infinite;
-    }
-
-    .carousel-track.auto-scroll:hover {
-      animation-play-state: paused;
-    }
-  </style>
 </head>
 
 <body>
@@ -292,26 +156,28 @@
 
     <div class="container">
       <div id="content-home" class="content">
-        <h1>Welcome to GalaxyVerse</h1>
-        <h2>[Nov 17 2025] <b>NEW AUTH SYSTEM</b></h2>
+        <!-- Top Carousel - Scrolling Left to Right -->
+        <div class="carousel-wrapper">
+          <div class="games-carousel">
+            <div class="carousel-track scroll-left-to-right" id="carousel-track-top">
+              <!-- Game cards will be dynamically loaded here -->
+            </div>
+          </div>
+        </div>
 
         <!-- Featured Section -->
         <div class="featured-section">
-          <h2>🎮 Featured Games</h2>
-          <p>Discover the best games available on GalaxyVerse</p>
+          <h2>🎮 Welcome to GalaxyVerse</h2>
+          <p>Discover the best games available</p>
+          <p style="font-size: 14px; opacity: 0.8; margin-top: 10px;">
+            <b>[Nov 17 2025]</b> NEW AUTH SYSTEM
+          </p>
         </div>
 
-        <!-- Games Carousel -->
-        <div class="games-carousel-section">
-          <div class="carousel-header">
-            <h2>Popular Games</h2>
-            <div class="carousel-controls">
-              <button class="carousel-btn" id="carousel-prev">‹</button>
-              <button class="carousel-btn" id="carousel-next">›</button>
-            </div>
-          </div>
+        <!-- Bottom Carousel - Scrolling Right to Left -->
+        <div class="carousel-wrapper">
           <div class="games-carousel">
-            <div class="carousel-track" id="carousel-track">
+            <div class="carousel-track scroll-right-to-left" id="carousel-track-bottom">
               <!-- Game cards will be dynamically loaded here -->
             </div>
           </div>
@@ -492,73 +358,12 @@
   <!-- 6. Main scripts (with Fingerprint ID protection integrated) -->
   <script src="scripts.js"></script>
 
-  <!-- Carousel functionality -->
+  <!-- Homepage scroll functionality -->
+  <script src="others/assets/scripts/homepage/homescroll.js"></script>
+
+  <!-- Global search functionality -->
   <script>
-    // Carousel functionality
     document.addEventListener('DOMContentLoaded', function() {
-      const track = document.getElementById('carousel-track');
-      const prevBtn = document.getElementById('carousel-prev');
-      const nextBtn = document.getElementById('carousel-next');
-      let currentIndex = 0;
-      const cardWidth = 270; // 250px + 20px gap
-
-      // Load games into carousel
-      function loadCarouselGames() {
-        if (typeof games === 'undefined') {
-          console.warn('Games data not loaded yet');
-          return;
-        }
-
-        // Duplicate games for infinite scroll effect
-        const gamesToShow = [...games, ...games].slice(0, 20);
-        
-        track.innerHTML = gamesToShow.map(game => `
-          <div class="carousel-game-card" data-game-id="${game.id}">
-            <img src="${game.image}" alt="${game.name}" draggable="false">
-            <h3>${game.name}</h3>
-          </div>
-        `).join('');
-
-        // Add click handlers
-        document.querySelectorAll('.carousel-game-card').forEach(card => {
-          card.addEventListener('click', function() {
-            const gameId = this.getAttribute('data-game-id');
-            if (typeof loadGame === 'function') {
-              loadGame(gameId);
-            }
-          });
-        });
-      }
-
-      // Navigation
-      function updateCarousel() {
-        const offset = -currentIndex * cardWidth;
-        track.style.transform = `translateX(${offset}px)`;
-      }
-
-      prevBtn.addEventListener('click', () => {
-        if (currentIndex > 0) {
-          currentIndex--;
-          updateCarousel();
-        }
-      });
-
-      nextBtn.addEventListener('click', () => {
-        const maxIndex = track.children.length - Math.floor(track.parentElement.offsetWidth / cardWidth);
-        if (currentIndex < maxIndex) {
-          currentIndex++;
-          updateCarousel();
-        }
-      });
-
-      // Load games when available
-      if (typeof games !== 'undefined') {
-        loadCarouselGames();
-      } else {
-        setTimeout(loadCarouselGames, 1000);
-      }
-
-      // Global search functionality
       const globalSearchBtn = document.getElementById('globalSearchBtn');
       const globalSearchInput = document.getElementById('globalSearchInput');
       const searchResults = document.getElementById('search-results');
@@ -592,7 +397,6 @@
           </div>
         `).join('');
 
-        // Add click handlers
         document.querySelectorAll('#search-results .game-card').forEach(card => {
           card.addEventListener('click', function() {
             const gameId = this.getAttribute('data-game-id');
@@ -603,12 +407,14 @@
         });
       }
 
-      globalSearchBtn.addEventListener('click', performGlobalSearch);
-      globalSearchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          performGlobalSearch();
-        }
-      });
+      if (globalSearchBtn && globalSearchInput) {
+        globalSearchBtn.addEventListener('click', performGlobalSearch);
+        globalSearchInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            performGlobalSearch();
+          }
+        });
+      }
     });
   </script>
 
