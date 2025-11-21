@@ -156,15 +156,6 @@
 
     <div class="container">
       <div id="content-home" class="content">
-        <!-- Top Carousel - Scrolling Left to Right -->
-        <div class="carousel-wrapper">
-          <div class="games-carousel">
-            <div class="carousel-track scroll-left-to-right" id="carousel-track-top">
-              <!-- Game cards will be dynamically loaded here -->
-            </div>
-          </div>
-        </div>
-
         <!-- Featured Section -->
         <div class="featured-section">
           <h2>🎮 Welcome to GalaxyVerse</h2>
@@ -172,6 +163,15 @@
           <p style="font-size: 14px; opacity: 0.8; margin-top: 10px;">
             <b>[Nov 17 2025]</b> NEW AUTH SYSTEM
           </p>
+        </div>
+
+        <!-- Top Carousel - Scrolling Left to Right -->
+        <div class="carousel-wrapper">
+          <div class="games-carousel">
+            <div class="carousel-track scroll-left-to-right" id="carousel-track-top">
+              <!-- Game cards will be dynamically loaded here -->
+            </div>
+          </div>
         </div>
 
         <!-- Bottom Carousel - Scrolling Right to Left -->
@@ -360,6 +360,18 @@
 
   <!-- Homepage scroll functionality -->
   <script src="others/assets/scripts/homepage/homescroll.js"></script>
+
+  <!-- Debug helper -->
+  <script>
+    console.log('Page loaded, checking for games data...');
+    setTimeout(() => {
+      console.log('Games available:', typeof games !== 'undefined' ? games.length : 'NOT LOADED');
+      console.log('Carousel tracks found:', {
+        top: !!document.getElementById('carousel-track-top'),
+        bottom: !!document.getElementById('carousel-track-bottom')
+      });
+    }, 2000);
+  </script>
 
   <!-- Global search functionality -->
   <script>
