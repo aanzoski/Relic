@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Nocookie Embedder</title>
+  <style>
+    :root {
+      --bg-color: #121826;
+      --nav-color: #1e2433;
+      --accent-color: #4f90ff;
+      --text-color: #e0e6f1;
+      --border-color: #38415d;
+      --hover-bg: #2a2f48;
+      --btn-bg: #3b466f;
+      --btn-hover-bg: #4f90ff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      padding: 2rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-color);
+    }
+
+    .header p {
+      color: var(--accent-color);
+      font-size: 1.1rem;
+    }
+
+    .card {
+      background-color: var(--nav-color);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .info-box {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      background-color: var(--hover-bg);
+      border-left: 3px solid var(--accent-color);
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+    }
+
+    .info-box svg {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      color: var(--accent-color);
+    }
+
+    .info-box p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .tab {
+      padding: 0.75rem 1.5rem;
+      background: none;
+      border: none;
+      color: var(--text-color);
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.3s;
+    }
+
+    .tab:hover {
+      color: var(--accent-color);
+    }
+
+    .tab.active {
+      color: var(--accent-color);
+      border-bottom-color: var(--accent-color);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.875rem;
+      background-color: var(--hover-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-color);
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent-color);
+    }
+
+    .form-group input::placeholder {
+      color: #7a8194;
+    }
+
+    .error {
+      color: #ff6b6b;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+
+    .error.show {
+      display: block;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+    }
+
+    button {
+      padding: 0.875rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      flex: 1;
+      background-color: var(--btn-bg);
+      color: var(--text-color);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background-color: var(--btn-hover-bg);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      background-color: var(--hover-bg);
+      color: var(--text-color);
+      display: none;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--border-color);
+    }
+
+    .btn-secondary.show {
+      display: flex;
+    }
+
+    .search-results {
+      display: none;
+      margin-top: 1.5rem;
+    }
+
+    .search-results.show {
+      display: block;
+    }
+
+    .search-result-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      background-color: var(--hover-bg);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+    }
+
+    .search-result-item:hover {
+      background-color: var(--border-color);
+      border-color: var(--accent-color);
+    }
+
+    .search-result-thumbnail {
+      width: 120px;
+      height: 90px;
+      border-radius: 6px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .search-result-info {
+      flex: 1;
+    }
+
+    .search-result-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-color);
+    }
+
+    .search-result-channel {
+      font-size: 0.875rem;
+      color: #7a8194;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: var(--accent-color);
+    }
+
+    .preview-section {
+      display: none;
+    }
+
+    .preview-section.show {
+      display: block;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: var(--bg-color);
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .spinner {
+      border: 3px solid var(--border-color);
+      border-top: 3px solid var(--accent-color);
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>YouTube Nocookie Embedder</h1>
+      <p>Privacy-enhanced YouTube video embedding</p>
+    </div>
+
+    <div class="card">
+      <div class="info-box">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <p>Using youtube-nocookie.com prevents YouTube from storing cookies on your visitors' devices until they actually play the video, improving privacy.</p>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="direct">Direct ID</button>
+        <button class="tab" data-tab="search">Search</button>
+      </div>
+
+      <div class="tab-content active" id="directTab">
+        <div class="form-group">
+          <label for="videoUrl">YouTube Video ID</label>
+          <input 
+            type="text" 
+            id="videoUrl" 
+            placeholder="dQw4w9WgXcQ"
+          >
+          <div class="error" id="directError"></div>
+        </div>
+
+        <div class="button-group">
+          <button class="btn-primary" id="embedBtn">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            Embed Video
+          </button>
+          <button class="btn-secondary" id="clearBtn">Clear</button>
+        </div>
+      </div>
+
+      <div class="tab-content" id="searchTab">
+        <div class="form-group">
+          <label for="searchInput">Search YouTube</label>
+          <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="Search for videos..."
+          >
+          <div class="error" id="searchError"></div>
+        </div>
+
+        <div class="button-group">
+          <button class="btn-primary" id="searchBtn">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            Search
+          </button>
+        </div>
+
+        <div class="search-results" id="searchResults"></div>
+      </div>
+    </div>
+
+    <div class="card preview-section" id="previewSection">
+      <h2 class="section-title">Preview</h2>
+      <div class="video-container" id="videoContainer"></div>
+    </div>
+  </div>
+
+  <script>
+    const videoUrlInput = document.getElementById('videoUrl');
+    const searchInput = document.getElementById('searchInput');
+    const embedBtn = document.getElementById('embedBtn');
+    const searchBtn = document.getElementById('searchBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const directError = document.getElementById('directError');
+    const searchError = document.getElementById('searchError');
+    const previewSection = document.getElementById('previewSection');
+    const videoContainer = document.getElementById('videoContainer');
+    const searchResults = document.getElementById('searchResults');
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    // Tab switching
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabName = tab.dataset.tab;
+        
+        tabs.forEach(t => t.classList.remove('active'));
+        tabContents.forEach(tc => tc.classList.remove('active'));
+        
+        tab.classList.add('active');
+        document.getElementById(`${tabName}Tab`).classList.add('active');
+        
+        hideError(directError);
+        hideError(searchError);
+      });
+    });
+
+    function showError(element, message) {
+      element.textContent = message;
+      element.classList.add('show');
+    }
+
+    function hideError(element) {
+      element.classList.remove('show');
+    }
+
+    function embedVideo(videoId) {
+      const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}`;
+      
+      videoContainer.innerHTML = `<iframe 
+        src="${embedUrl}"
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>`;
+      
+      previewSection.classList.add('show');
+      clearBtn.classList.add('show');
+      
+      window.scrollTo({
+        top: previewSection.offsetTop - 20,
+        behavior: 'smooth'
+      });
+    }
+
+    function handleEmbed() {
+      hideError(directError);
+      
+      const videoId = videoUrlInput.value.trim();
+      
+      if (!videoId) {
+        showError(directError, 'Please enter a YouTube video ID');
+        return;
+      }
+
+      if (videoId.length < 5 || !/^[a-zA-Z0-9_-]+$/.test(videoId)) {
+        showError(directError, 'Invalid video ID format.');
+        return;
+      }
+
+      embedVideo(videoId);
+    }
+
+    async function handleSearch() {
+      hideError(searchError);
+      
+      const query = searchInput.value.trim();
+      
+      if (!query) {
+        showError(searchError, 'Please enter a search term');
+        return;
+      }
+
+      searchBtn.disabled = true;
+      searchResults.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+      searchResults.classList.add('show');
+
+      try {
+        const response = await fetch(`https://corsproxy.io/?${encodeURIComponent(`https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`)}`);
+        const html = await response.text();
+        
+        // Extract video data from the YouTube search results page
+        const videoIds = [];
+        const videoTitles = [];
+        const videoChannels = [];
+        
+        // Look for ytInitialData in the page
+        const scriptMatch = html.match(/var ytInitialData = ({.+?});/);
+        
+        if (scriptMatch) {
+          const data = JSON.parse(scriptMatch[1]);
+          const contents = data?.contents?.twoColumnSearchResultsRenderer?.primaryContents?.sectionListRenderer?.contents;
+          
+          if (contents) {
+            for (const section of contents) {
+              const items = section?.itemSectionRenderer?.contents;
+              if (items) {
+                for (const item of items) {
+                  const videoRenderer = item?.videoRenderer;
+                  if (videoRenderer) {
+                    videoIds.push(videoRenderer.videoId);
+                    videoTitles.push(videoRenderer.title?.runs?.[0]?.text || 'Untitled');
+                    videoChannels.push(videoRenderer.ownerText?.runs?.[0]?.text || 'Unknown');
+                    
+                    if (videoIds.length >= 5) break;
+                  }
+                }
+              }
+              if (videoIds.length >= 5) break;
+            }
+          }
+        }
+
+        if (videoIds.length === 0) {
+          searchResults.innerHTML = '<div class="loading">No results found. Try a different search term.</div>';
+          searchBtn.disabled = false;
+          return;
+        }
+
+        // Display results
+        let resultsHTML = '';
+        for (let i = 0; i < videoIds.length; i++) {
+          resultsHTML += `
+            <div class="search-result-item" data-video-id="${videoIds[i]}">
+              <img class="search-result-thumbnail" src="https://img.youtube.com/vi/${videoIds[i]}/mqdefault.jpg" alt="Thumbnail">
+              <div class="search-result-info">
+                <div class="search-result-title">${videoTitles[i]}</div>
+                <div class="search-result-channel">${videoChannels[i]}</div>
+              </div>
+            </div>
+          `;
+        }
+        
+        searchResults.innerHTML = resultsHTML;
+
+        // Add click handlers
+        document.querySelectorAll('.search-result-item').forEach(item => {
+          item.addEventListener('click', () => {
+            const videoId = item.dataset.videoId;
+            embedVideo(videoId);
+          });
+        });
+
+      } catch (error) {
+        console.error('Search error:', error);
+        searchResults.innerHTML = '<div class="loading">Search failed. Please try again.</div>';
+      }
+
+      searchBtn.disabled = false;
+    }
+
+    function handleClear() {
+      videoUrlInput.value = '';
+      searchInput.value = '';
+      videoContainer.innerHTML = '';
+      searchResults.innerHTML = '';
+      searchResults.classList.remove('show');
+      hideError(directError);
+      hideError(searchError);
+      previewSection.classList.remove('show');
+      clearBtn.classList.remove('show');
+    }
+
+    embedBtn.addEventListener('click', handleEmbed);
+    searchBtn.addEventListener('click', handleSearch);
+    clearBtn.addEventListener('click', handleClear);
+    
+    videoUrlInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        handleEmbed();
+      }
+    });
+
+    searchInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        handleSearch();
+      }
+    });
+  </script>
+</body>
+</html>
