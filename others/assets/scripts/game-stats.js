@@ -1,6 +1,11 @@
-// ===== GAME STATISTICS & TRACKING SYSTEM =====
+// ===== GALAXYVERSE GAME STATISTICS & TRACKING SYSTEM =====
+// Version: 5.0.0
+// Path: others/assets/scripts/game-stats.js
+
 (function() {
   'use strict';
+
+  console.log('📊 Loading Game Statistics System...');
 
   const GameStats = {
     initialized: false,
@@ -10,7 +15,7 @@
 
     init() {
       if (this.initialized) return;
-      console.log('📊 Initializing Game Statistics System...');
+      console.log('🔧 Initializing Game Statistics System...');
       
       // Ensure storage structures exist
       if (!localStorage.getItem('gameStats')) {
@@ -25,6 +30,8 @@
       
       this.initialized = true;
       console.log('✅ Game Statistics System initialized');
+      console.log('📈 Total games tracked:', Object.keys(this.getAllStats()).length);
+      console.log('⭐ Favorites:', this.getFavorites().length);
     },
 
     initializeDefaultCategories() {
@@ -36,14 +43,20 @@
         'Arcade': [],
         'Adventure': [],
         'Multiplayer': [],
-        'Casual': []
+        'Casual': [],
+        'Racing': [],
+        'Shooter': []
       };
       localStorage.setItem('gameCategories', JSON.stringify(defaultCategories));
+      console.log('📁 Default categories initialized');
     },
 
     // ===== GAME TRACKING =====
     startTracking(gameUrl) {
-      if (!gameUrl) return;
+      if (!gameUrl) {
+        console.warn('⚠️ Cannot track game: No URL provided');
+        return;
+      }
       
       this.stopTracking(); // Stop any existing tracking
       
@@ -56,7 +69,12 @@
       const stats = this.getGameStats(gameUrl);
       stats.playCount = (stats.playCount || 0) + 1;
       stats.lastPlayed = Date.now();
+      if (!stats.firstPlayed) {
+        stats.firstPlayed = Date.now();
+      }
       this.saveGameStats(gameUrl, stats);
+      
+      console.log('🎮 Play count:', stats.playCount);
       
       // Update time every second
       this.trackingInterval = setInterval(() => {
@@ -72,7 +90,9 @@
       
       if (this.currentGame && this.startTime) {
         this.updatePlayTime();
+        const sessionTime = Math.floor((Date.now() - this.startTime) / 1000);
         console.log('⏹️ Stopped tracking:', this.currentGame);
+        console.log('⏱️ Session time:', this.formatTime(sessionTime));
       }
       
       this.currentGame = null;
@@ -82,7 +102,6 @@
     updatePlayTime() {
       if (!this.currentGame || !this.startTime) return;
       
-      const sessionTime = Math.floor((Date.now() - this.startTime) / 1000);
       const stats = this.getGameStats(this.currentGame);
       stats.totalTime = (stats.totalTime || 0) + 1; // Add 1 second
       this.saveGameStats(this.currentGame, stats);
@@ -107,6 +126,32 @@
 
     getAllStats() {
       return JSON.parse(localStorage.getItem('gameStats') || '{}');
+    },
+
+    getTotalPlaytime() {
+      const allStats = this.getAllStats();
+      let total = 0;
+      Object.values(allStats).forEach(stat => {
+        total += stat.totalTime || 0;
+      });
+      return total;
+    },
+
+    getTotalPlayCount() {
+      const allStats = this.getAllStats();
+      let total = 0;
+      Object.values(allStats).forEach(stat => {
+        total += stat.playCount || 0;
+      });
+      return total;
+    },
+
+    getUniqueGamesPlayed() {
+      const allStats = this.getAllStats();
+      return Object.keys(allStats).filter(url => {
+        const stats = allStats[url];
+        return stats.playCount > 0;
+      }).length;
     },
 
     formatTime(seconds) {
@@ -146,7 +191,7 @@
       }
       
       localStorage.setItem('gameFavorites', JSON.stringify(favorites));
-      return !this.isFavorite(gameUrl);
+      return index === -1; // Return true if now favorited
     },
 
     // ===== CATEGORIES SYSTEM =====
@@ -220,6 +265,11 @@
       });
     },
 
+    filterByFavorites(games) {
+      const favorites = this.getFavorites();
+      return games.filter(game => favorites.includes(game.url));
+    },
+
     // ===== UI HELPERS =====
     createFavoriteButton(gameUrl, isFavorited) {
       return `
@@ -234,8 +284,7 @@
     },
 
     handleFavoriteClick(gameUrl, buttonElement) {
-      this.toggleFavorite(gameUrl);
-      const isFav = this.isFavorite(gameUrl);
+      const isFav = this.toggleFavorite(gameUrl);
       
       if (isFav) {
         buttonElement.classList.add('favorited');
@@ -243,6 +292,14 @@
       } else {
         buttonElement.classList.remove('favorited');
         buttonElement.querySelector('svg').setAttribute('fill', 'none');
+      }
+      
+      // Update the game list if on favorites filter
+      const activeFilter = document.querySelector('.filter-btn.active');
+      if (activeFilter && activeFilter.dataset.filter === 'favorites') {
+        if (window.filterGames) {
+          window.filterGames('favorites');
+        }
       }
     },
 
@@ -293,7 +350,7 @@
       return `
         <div class="game-filters">
           <button class="filter-btn active" data-filter="all" onclick="window.filterGames('all')">
-            All Games
+            📋 All Games
           </button>
           <button class="filter-btn" data-filter="favorites" onclick="window.filterGames('favorites')">
             ⭐ Favorites
@@ -330,7 +387,8 @@
         stats: this.getAllStats(),
         favorites: this.getFavorites(),
         categories: this.getCategories(),
-        exportDate: new Date().toISOString()
+        exportDate: new Date().toISOString(),
+        version: '5.0.0'
       };
     },
 
@@ -339,6 +397,7 @@
       if (data.favorites) localStorage.setItem('gameFavorites', JSON.stringify(data.favorites));
       if (data.categories) localStorage.setItem('gameCategories', JSON.stringify(data.categories));
       console.log('📥 Stats imported successfully');
+      console.log('📊 Imported version:', data.version || 'Unknown');
     }
   };
 
@@ -348,5 +407,6 @@
   // Expose to window
   window.GameStats = GameStats;
 
-  console.log('✅ game-stats.js loaded');
+  console.log('✅ game-stats.js loaded successfully');
+  console.log('🎮 Game tracking system ready');
 })();
