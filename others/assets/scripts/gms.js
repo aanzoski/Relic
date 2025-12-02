@@ -35,7 +35,6 @@ const games = [
   { name: "Bulletforce", image: "others/assets/games/images/bulletforce.png", url: "others/assets/games/bulletforce.html" },
   // D
   { name: "Drive Mad", image: "others/assets/games/images/drivemad.png", url: "others/assets/games/drive mady.html" },
-  { name: "Doblox", image: "others/assets/games/images/doblox.png", url: "others/assets/games/doblox.html" },
   // C
   { name: "Candy Crush", image: "others/assets/games/images/candycrush.png", url: "others/assets/games/Candy Crush.html" },
   { name: "Cluster Rush", image: "others/assets/games/images/clusterrush.jpeg", url: "others/assets/games/Cluster Rush.html" },
@@ -62,6 +61,7 @@ const games = [
   { name: "Granny", image: "others/assets/games/images/granny.png", url: "others/assets/games/Granny.html" },
   // H
   { name: "Highway Racer 2", image: "others/assets/games/images/highwayracer.jpg", url: "others/assets/games/Highway Racer 2.html" },
+  { name: "Hotline Miami", image: "others/assets/games/images/highwayracer.jpg", url: "others/assets/games/Hotline Miami.html" },
   
   { name: "Infinite Craft", image: "others/assets/games/images/infcraft.jpg", url: "others/assets/games/Infinite Craft" },
   // J
@@ -106,7 +106,7 @@ const games = [
   { name: "Sniper Shot", image: "others/assets/games/images/snipershot.png", url: "others/assets/games/snipershot.html" },
   { name: "Solar Smash", image: "others/assets/games/images/Solar_smash.webp", url: "others/assets/games/Solar Smash.html" },
   { name: "Soccer Bros", image: "others/assets/games/images/Soccer-Bros-Unblocked.webp", url: "others/assets/games/soccerbros.html" },
-  { name: "Sonix.exe OG", image: "others/assets/games/images/sonicexe.jpg", url: "others/assets/games/soniceexeog.html" },
+  { name: "Sonic.exe OG", image: "others/assets/games/images/sonicexe.png", url: "others/assets/games/soniceexeog.html" },
   { name: "Space Waves", image: "others/assets/games/images/spacewaves.png", url: "others/assets/games/Space Waves.html" },
   { name: "Steal a Brainrot 1", image: "others/assets/games/images/stealabrain.webp", url: "others/assets/games/Steal Brainrot Online UPD1.html" },
   { name: "Steal a Brainrot 2", image: "others/assets/games/images/steal a brainrot.png", url: "others/assets/games/brainrot.html" },
