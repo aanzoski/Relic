@@ -1,0 +1,12 @@
+{
+  "name": "scramjet-proxy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "@mercuryworkshop/scramjet": "latest"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
