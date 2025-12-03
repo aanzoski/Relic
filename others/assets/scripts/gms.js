@@ -50,6 +50,7 @@ const games = [
   { name: "Escape Road", image: "others/assets/games/images/escaperoad.png", url: "others/assets/games/Escape Road.html" },
   { name: "Escape Road 2", image: "others/assets/games/images/escaperoad2.jpeg", url: "others/assets/games/clescaperoad-2.html" },
   // F
+  { name: "FNAF", image: "others/assets/games/images/fnaf.webp", url: "others/assets/games/FNAF.html" },
   { name: "Flappy Bird", image: "others/assets/games/images/flappybird.png", url: "others/assets/games/Flappy Bird.html" },
   { name: "Football Bros", image: "others/assets/games/images/football-bros.webp", url: "others/assets/games/Football Bros.html" },
   { name: "Friday Night Funkin': Darkness Takeover", image: "others/assets/games/images/takeover.jpg", url: "others/assets/games/Friday Night Funkin'_ Darkness Takeover.html" },
