@@ -1,3 +1,5 @@
+<p align="center"><img src="https://github.com/aanzoski/relic/blob/main/others/assets/relic.webp?raw=true" height="150">
+
 <h1 align="center"><strong>Relic Ultimate</strong></h1>
 <p align="center">Store bought groceries</p>
 
