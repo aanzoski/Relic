@@ -1,7 +1,7 @@
 <p align="center"><img src="https://github.com/aanzoski/relic/blob/main/others/assets/relic.webp?raw=true" height="180">
 
 <h1 align="center"><strong>Relic Ultimate</strong></h1>
-<p align="center">Store bought groceries</p>
+<h3 align="center"><a href="https://dsc.gg/galaxyproxi">Discord Server</a></h3>
 
 ### Contributors:
 - <a href="https://dsc.gg/galaxyproxi">GalaxyVerse</a> (Archived)
