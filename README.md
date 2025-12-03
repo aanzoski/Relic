@@ -4,3 +4,16 @@
 ### Contributors:
 - Anzo
 - <a href="https://github.com/JustJxrdanWasDefinetlyTaken">Jordan</a>
+
+### Features
+- 100+ Games
+- Themes
+
+### Coming Soon
+- Import / Export Data
+- Scramjet / UV
+
+### Credits
+- <a href="//github.com/3kh0">3kh0 - CDN</a>
+- <a href="//github.com/mercuryworkshop">MercuryWorkshop - Scramjet</a>
+- UGS Assets, Ultimate Game Stash, gn-math, - Ports
