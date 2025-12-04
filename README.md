@@ -7,6 +7,7 @@
 - <a href="https://dsc.gg/galaxyproxi">GalaxyVerse</a> (Archived)
 - Anzo
 - <a href="https://github.com/JustJxrdanWasDefinetlyTaken">Jordan</a>
+- <a href="https://github.com/Coding4Hours">Coding4Hours</a>
 
 ### Features
 - 100+ Games
