@@ -1,7 +1,10 @@
-// Sidebar Handler with expanshun
+// THIS ONE MIGHT BE SCRAPPED!!!!!!!!!!!!
+
+// Sidebar Navigation Handler with Hover Expansion
 (function() {
   'use strict';
 
+  // Wait for DOM to be fully loaded
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initSidebarNavigation);
   } else {
@@ -11,6 +14,7 @@
   function initSidebarNavigation() {
     console.log('🎨 Initializing hover-expandable sidebar...');
     
+    // Get all sidebar links
     const sidebarLinks = document.querySelectorAll('.sidebar-link');
     const sidebar = document.querySelector('.sidebar');
     
@@ -19,16 +23,15 @@
       'home': 'content-home',
       'games': 'content-gms',
       'apps': 'content-aps',
-      'settings': 'content-settings',
-      'data': 'content-data',
-      'search': 'content-search'
+      'settings': 'content-settings'
     };
 
-    // event to each sidebar link
+    // Add click event to each sidebar link
     sidebarLinks.forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
         
+        // Get the page identifier
         const page = this.getAttribute('data-page');
         
         console.log('📄 Switching to page:', page);
@@ -49,11 +52,6 @@
           if (contentElement) {
             contentElement.style.display = 'block';
             console.log('✅ Content displayed:', contentId);
-            
-            // If data page, populate statistics
-            if (page === 'data' && window.DataManager) {
-              window.DataManager.updateStats();
-            }
           }
         }
 
@@ -97,11 +95,13 @@
       if (activePage) {
         const activeLink = document.querySelector(`.sidebar-link[data-page="${activePage}"]`);
         if (activeLink) {
+          // Simulate click to restore state
           setTimeout(() => {
             activeLink.click();
           }, 100);
         }
       } else {
+        // Default to home if no active page
         const homeLink = document.querySelector('.sidebar-link[data-page="home"]');
         if (homeLink && !homeLink.classList.contains('active')) {
           homeLink.click();
@@ -112,6 +112,7 @@
     }
   }
 
+  // Handle back buttons
   function setupBackButtons() {
     const backButtons = [
       { id: 'backToHomeApps', target: 'home' },
@@ -131,6 +132,7 @@
     });
   }
 
+  // Modal handlers
   function setupModals() {
     const creditsBtn = document.getElementById('creditsBtn');
     const updateLogBtn = document.getElementById('updateLogBtn');
@@ -149,6 +151,7 @@
       });
     }
 
+    // Close modal functionality
     const closeButtons = document.querySelectorAll('.info-close');
     closeButtons.forEach(btn => {
       btn.addEventListener('click', function() {
@@ -160,12 +163,14 @@
       });
     });
 
+    // Close modal when clicking outside
     window.addEventListener('click', function(e) {
       if (e.target.classList.contains('info-modal')) {
         e.target.style.display = 'none';
       }
     });
 
+    // Close modal with Escape key
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         const modals = document.querySelectorAll('.info-modal');
@@ -178,36 +183,39 @@
     });
   }
 
+  // Keyboard navigation
   function setupKeyboardNav() {
     document.addEventListener('keydown', function(e) {
+      // Only work if not typing in input
       const activeElement = document.activeElement;
       if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
         return;
       }
 
+      // Press '1' for home
       if (e.key === '1') {
         const homeLink = document.querySelector('.sidebar-link[data-page="home"]');
         if (homeLink) homeLink.click();
       }
+      // Press '2' for games
       if (e.key === '2') {
         const gamesLink = document.querySelector('.sidebar-link[data-page="games"]');
         if (gamesLink) gamesLink.click();
       }
+      // Press '3' for apps
       if (e.key === '3') {
         const appsLink = document.querySelector('.sidebar-link[data-page="apps"]');
         if (appsLink) appsLink.click();
       }
+      // Press '4' for settings
       if (e.key === '4') {
         const settingsLink = document.querySelector('.sidebar-link[data-page="settings"]');
         if (settingsLink) settingsLink.click();
       }
-      if (e.key === '5') {
-        const dataLink = document.querySelector('.sidebar-link[data-page="data"]');
-        if (dataLink) dataLink.click();
-      }
     });
   }
 
+  // Smooth scroll to top
   function scrollToTop() {
     window.scrollTo({
       top: 0,
@@ -215,6 +223,7 @@
     });
   }
 
+  // Moon icon click handler - goes to home
   function setupMoonClick() {
     const moonIcon = document.querySelector('.moon-icon');
     if (moonIcon) {
@@ -227,6 +236,7 @@
     }
   }
 
+  // Initialize all features
   setTimeout(() => {
     setupBackButtons();
     setupModals();
@@ -235,6 +245,7 @@
     console.log('✅ Sidebar fully initialized');
   }, 100);
 
+  // Add visual feedback for active state changes
   document.addEventListener('click', function(e) {
     if (e.target.closest('.sidebar-link')) {
       const link = e.target.closest('.sidebar-link');
@@ -245,6 +256,7 @@
     }
   });
 
+  // Enhanced accessibility: Announce page changes
   function announcePageChange(pageName) {
     const announcement = document.createElement('div');
     announcement.setAttribute('role', 'status');
@@ -258,6 +270,7 @@
     }, 1000);
   }
 
+  // Update link clicks to include announcements
   document.querySelectorAll('.sidebar-link').forEach(link => {
     link.addEventListener('click', function() {
       const page = this.getAttribute('data-page');
@@ -266,6 +279,7 @@
     });
   });
 
+  // Add smooth transitions for sidebar expand/collapse
   const sidebar = document.querySelector('.sidebar');
   if (sidebar) {
     let expandTimeout;
