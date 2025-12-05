@@ -26,11 +26,11 @@
   <!-- Homepage ceeeses -->
   <link rel="stylesheet" href="./others/assets/scripts/homepage/css/homepage.css" />
 
-  <!-- Google ceeeses -->
+  <!-- gogle ceeeses -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet" />
   
   <style>
-    /* Proxy Browser  */
+    /* Proxy Browser jordn */
     .proxy-browser-container {
       display: flex;
       flex-direction: column;
@@ -169,7 +169,7 @@
 
 <body>
 
-  <!-- Sidebar Navigation -->
+  <!-- Sidebar Nav -->
   <div class="sidebar">
     <div class="sidebar-header">
       <div class="sidebar-logoforanzoml"> <link rel="icon" href="others/assets/relic.webp" /></div>
@@ -190,6 +190,13 @@
           <polyline points="17 7 17 22"></polyline>
         </svg>
         <span>Gᾰmes</span>
+      </a>
+      <a href="#" class="sidebar-link" id="emulatedLink" data-page="emulated" title="Emulated Games">
+        <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+          <line x1="12" y1="18" x2="12" y2="18"></line>
+        </svg>
+        <span>Emulated</span>
       </a>
       <a href="#" class="sidebar-link" id="searchLink" data-page="search" title="Search">
         <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -366,6 +373,18 @@
         </div>
         <div id="game-list" class="game-grid">
           <!-- Game cards will be dynamically loaded here -->
+        </div>
+      </div>
+
+      <!-- NEW EMULATED GAMES SECTION -->
+      <div id="content-emulated" class="content" style="display:none;">
+        <h1>Emulated Gᾰmes</h1>
+        <div class="search-container">
+          <input type="text" id="searchEmulatedInput" placeholder="Search emulated gᾰmes..." />
+          <button id="searchEmulatedBtn">Search</button>
+        </div>
+        <div id="emulated-list" class="game-grid">
+          <!-- Emulated game cards will be dynamically loaded here -->
         </div>
       </div>
 
