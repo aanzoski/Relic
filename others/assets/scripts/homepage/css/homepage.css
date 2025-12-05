@@ -1,4 +1,29 @@
-/* Enhanced Homepage Carousel Styles */
+.notes-box {
+    padding: 14px 16px;
+    margin: 25px auto;
+    .notes-box {
+    padding: 12px 14px;
+    margin: 20px auto;
+  }
+
+  .notes-box-title {
+    font-size: 12px;
+  }
+
+  .notes-box-item {
+    font-size: 13px;
+    padding-left: 16px;
+  }
+}
+
+  .notes-box-title {
+    font-size: 13px;
+  }
+
+  .notes-box-item {
+    font-size: 14px;
+    padding-left: 18px;
+  }/* Enhanced Homepage Carousel Styles */
 
 .carousel-wrapper {
   width: 100%;
@@ -166,6 +191,82 @@
               0 0 80px rgba(91, 158, 255, 0.15);
   position: relative;
   overflow: hidden;
+}
+
+/* Notes Box - Similar to Discord embed style */
+.notes-box {
+  background: rgba(20, 25, 38, 0.6);
+  border-left: 4px solid rgba(91, 158, 255, 0.8);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 30px auto;
+  max-width: 600px;
+  text-align: left;
+  position: relative;
+  z-index: 1;
+}
+
+.notes-box-title {
+  color: #5b9eff;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.notes-box-item {
+  color: var(--text-color);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 8px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.notes-box-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(91, 158, 255, 0.6);
+}
+
+.notes-box-item.check::before {
+  content: '✓';
+  background: none;
+  color: #43b581;
+  font-weight: bold;
+  width: auto;
+  height: auto;
+  top: 0;
+  left: 0;
+}
+
+.notes-box-item.x::before {
+  content: '✗';
+  background: none;
+  color: #f04747;
+  font-weight: bold;
+  width: auto;
+  height: auto;
+  top: 0;
+  left: 0;
+}
+
+.notes-box-item.crown::before {
+  content: '👑';
+  background: none;
+  width: auto;
+  height: auto;
+  top: 0;
+  left: 0;
 }
 
 .featured-section::before {
