@@ -6,6 +6,8 @@
 const games = [
   { name: "Feedback", image: "https://iili.io/3OM27wv.th.jpg", url: "https://forms.gle/GhMEg7s8H9aRSy4d9" },
   // Numerals
+  { name: "1 on 1 Soccer", image: "others/assets/games/images/1 on 1soccer.jpg", url: "others/assets/games/1 on 1soccer.html" },
+  { name: "10 Bullets", image: "others/assets/games/images/10 bullets.png", url: "others/assets/games/10 bullets.html" },
   { name: "1v1 Old", image: "others/assets/games/images/1v1lol.jpeg", url: "others/assets/games/1v1lol/index.html" },
   { name: "1v1 Oldest", image: "others/assets/games/images/1v1lololdest.jpeg", url: "others/assets/games/1v1.lol_oldest.html" },
   { name: "2048", image: "others/assets/games/images/2048.jpg", url: "others/assets/games/2048.html" },
@@ -53,6 +55,7 @@ const games = [
   { name: "Drift Boss", image: "others/assets/games/images/driftboss.png", url: "others/assets/games/Drift Boss.html" },
   { name: "Drift Hunters ", image: "others/assets/games/images/drift-hunters.png", url: "others/assets/games/Drift Huntersfix.html" },
   // E
+  { name: "Eggy Car", image: "others/assets/games/images/eggy-car-game.jpg", url: "others/assets/games/eggy car.html" },
   { name: "Escape Road", image: "others/assets/games/images/escaperoad.png", url: "others/assets/games/Escape Road.html" },
   { name: "Escape Road 2", image: "others/assets/games/images/escaperoad2.jpeg", url: "others/assets/games/clescaperoad-2.html" },
   // F
@@ -63,16 +66,22 @@ const games = [
   { name: "Fruit Ninja", image: "others/assets/games/images/fruitninja.jpeg", url: "others/assets/games/Fruit Ninja.html" },
   // G
   { name: "Geometry Dash Lite", image: "others/assets/games/images/dashlite.png", url: "others/assets/games/geometrydash.html" },
+  { name: "Geometry Dash Subzero", image: "others/assets/games/images/gdashsubzero.png", url: "others/assets/games/gd subzero.html" },
+  { name: "Gold Miner", image: "others/assets/games/images/Gold Miner.png", url: "others/assets/games/gold miner.html" },
   { name: "Google Baseball", image: "others/assets/games/images/baseball.png", url: "others/assets/games/Google Baseball.html" },
   { name: "Google Dino", image: "others/assets/games/images/Google dino.jpeg", url: "others/assets/games/Google Baseball.html" },
   { name: "Google Feud", image: "others/assets/games/images/googlefeud.jpg", url: "others/assets/games/Google Feud.html" },
   { name: "Granny", image: "others/assets/games/images/granny.png", url: "others/assets/games/Granny.html" },
   { name: "Grow a Garden", image: "others/assets/games/images/grow a garden.png", url: "others/assets/games/growagarden.html" },
   // H
+  { name: "Half Life", image: "others/assets/games/images/Half Life.png", url: "others/assets/games/halflife.html" },
   { name: "Highway Racer 2", image: "others/assets/games/images/highwayracer.jpg", url: "others/assets/games/Highway Racer 2.html" },
+  { name: "Hill Climb Racing", image: "others/assets/games/images/Hill Climb Racing.png", url: "others/assets/games/hillclimbracinglite.html" },
   { name: "Hole.io", image: "others/assets/games/images/hole-io.png", url: "others/assets/games/hole.io.html" },
   { name: "Hotline Miami", image: "others/assets/games/images/hotline Miami.png", url: "others/assets/games/Hotline Miami.html" },
-  
+  // I
+  { name: "Icy Purple Head", image: "others/assets/games/images/infcraft.jpg", url: "others/assets/games/Infinite Craft" },
+  { name: "Ink Game", image: "others/assets/games/images/inkgame.png", url: "others/assets/games/inkgame.html" },
   { name: "Infinite Craft", image: "others/assets/games/images/infcraft.jpg", url: "others/assets/games/Infinite Craft" },
   // J
   { name: "Jetpack Joyride", image: "others/assets/games/images/jetpack.png", url: "others/assets/games/Jetpack Joyride.html" },
