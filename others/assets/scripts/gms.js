@@ -167,16 +167,8 @@ const games = [
 
 //EMULATED GAMES 
 const emulatedGames = [
-  { name: "Super Mario Bros", image: "others/assets/Emulated/images/supermario.jpg", url: "others/assets/Emulated/supermario.html" },
-  { name: "Sonic The Hedgehog", image: "others/assets/Emulated/images/sonic.jpg", url: "others/assets/Emulated/sonic.html" },
-  { name: "Pokemon FireRed", image: "others/assets/Emulated/images/pokemonfirered.jpg", url: "others/assets/Emulated/pokemonfirered.html" },
-  { name: "Legend of Zelda", image: "others/assets/Emulated/images/zelda.jpg", url: "others/assets/Emulated/zelda.html" },
-  { name: "Kirby's Adventure", image: "others/assets/Emulated/images/kirby.jpg", url: "others/assets/Emulated/kirby.html" },
-  { name: "Mega Man", image: "others/assets/Emulated/images/megaman.jpg", url: "others/assets/Emulated/megaman.html" },
-  { name: "Donkey Kong", image: "others/assets/Emulated/images/donkeykong.jpg", url: "others/assets/Emulated/donkeykong.html" },
-  { name: "Metroid", image: "others/assets/Emulated/images/metroid.jpg", url: "others/assets/Emulated/metroid.html" },
-  { name: "Pac-Man", image: "others/assets/Emulated/images/pacman.jpg", url: "others/assets/Emulated/pacman.html" },
-  { name: "Street Fighter II", image: "others/assets/Emulated/images/streetfighter.jpg", url: "others/assets/Emulated/streetfighter.html" }
+  { name: "FIFA Soccer 95 ", image: "public/images/FIFasoccer95.png", url: "others/assets/Emulated/FIFAsoccer95.html" },
+  { name: "Street Fighter II", image: "public/images/FIFasoccer95.png", url: "others/assets/Emulated/streetfighter.html" }
 ];
 
 //APP DATA
