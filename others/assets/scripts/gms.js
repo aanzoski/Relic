@@ -167,8 +167,8 @@ const games = [
 
 //EMULATED GAMES 
 const emulatedGames = [
-  { name: "FIFA Soccer 95 ", image: "public/images/FIFasoccer95.png", url: "others/assets/Emulated/FIFAsoccer95.html" },
-  { name: "Street Fighter II", image: "public/images/FIFasoccer95.png", url: "others/assets/Emulated/streetfighter.html" }
+  { name: "FIFA Soccer 95 ", image: "public/images/fifasoccer95.png", url: "others/assets/Emulated/FIFAsoccer95.html" },
+  { name: "Street Fighter II", image: "public/images/fifasoccer95.png", url: "others/assets/Emulated/streetfighter.html" }
 ];
 
 //APP DATA
