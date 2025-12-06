@@ -167,8 +167,12 @@ const games = [
 
 //EMULATED GAMES 
 const emulatedGames = [
-  { name: "FIFA Soccer 95 ", image: "public/images/fifasoccer95.png", url: "others/assets/Emulated/FIFAsoccer95.html" },
-  { name: "Street Fighter II", image: "public/images/fifasoccer95.png", url: "others/assets/Emulated/streetfighter.html" }
+  { name: "FIFA Soccer 95", image: "public/images/fifasoccer95.png", url: "others/assets/Emulated/FIFAsoccer95.html" },
+  { name: "Grand Theft Auto V", image: "public/images/gta 5.jpg", url: "others/assets/Emulated/gta.html" },
+  { name: "Grand Theft Auto V (2)", image: "public/images/gta 5 logo 2.png", url: "others/assets/Emulated/gta 2.html" },
+  { name: "Mega Man Wily Wars", image: "public/images/Mega Man wily wars.webp", url: "others/assets/Emulated/Mega Man wily wars.html" },
+  { name: "Mortal Kombat 3", image: "mortal kombat 3.html", url: "mortal kombat 3.html" },
+  { name: "Space Invaders", image: "public/images/space invaders.png", url: "others/assets/Emulated/space invaders.html" }
 ];
 
 //APP DATA
